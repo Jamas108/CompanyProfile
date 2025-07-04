@@ -146,10 +146,7 @@ function App() {
             {/* Left Side - Text Content */}
             <div className="space-y-8">
               <div className="space-y-2">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-900/30 border border-purple-500/30 rounded-full text-sm text-purple-300">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  Available for work
-                </div>
+                
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
                   <span className="text-white">Hello, I'm</span>
                   <br />
