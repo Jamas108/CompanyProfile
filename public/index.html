@@ -1,43 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <meta name="theme-color" content="#7c3aed" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Ansar Nur Jamas - Fullstack Developer portfolio website. Spesialis React.js, Node.js, dan pengembangan aplikasi web modern." />
+    <meta name="keywords" content="Fullstack Developer, React.js, Node.js, Portfolio, Web Developer, Surabaya, JavaScript, TypeScript" />
+    <meta name="author" content="Ansar Nur Jamas" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ansarjamas.com" />
+    <meta property="og:title" content="Ansar Nur Jamas - Fullstack Developer" />
+    <meta property="og:description" content="Portfolio website Ansar Nur Jamas, Fullstack Developer dari Surabaya. Spesialis React.js, Node.js, dan teknologi web modern." />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Ansar Nur Jamas Portfolio" />
+    <meta property="og:locale" content="id_ID" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ansarjamas.com" />
+    <meta property="twitter:title" content="Ansar Nur Jamas - Fullstack Developer" />
+    <meta property="twitter:description" content="Portfolio website Ansar Nur Jamas, Fullstack Developer dari Surabaya" />
+    <meta property="twitter:image" content="%PUBLIC_URL%/og-image.jpg" />
+    <meta property="twitter:creator" content="@ansarnurjamas" />
+
+    <!-- Additional Meta Tags -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-TileColor" content="#7c3aed" />
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ansar Nur Jamas",
+      "jobTitle": "Fullstack Developer",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Telkom University Surabaya"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Surabaya",
+        "addressRegion": "Jawa Timur",
+        "addressCountry": "Indonesia"
+      },
+      "email": "ansarnurjamas@gmail.com",
+      "knowsAbout": ["React.js", "Node.js", "JavaScript", "TypeScript", "MongoDB", "PostgreSQL"],
+      "url": "https://ansarjamas.com"
+    }
+    </script>
+    
+    <title>Ansar Nur Jamas - Fullstack Developer Portfolio</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    
+    <!-- Performance monitoring (optional) -->
+    <script>
+      // Simple performance monitoring
+      window.addEventListener('load', function() {
+        if ('performance' in window) {
+          setTimeout(function() {
+            const perfData = performance.timing;
+            const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+            console.log('Page load time: ' + loadTime + 'ms');
+          }, 0);
+        }
+      });
+    </script>
   </body>
 </html>
