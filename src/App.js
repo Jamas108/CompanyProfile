@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Mail, MapPin, Github, Linkedin, ExternalLink, Code, Database, Globe, Smartphone, Download, ArrowRight, Phone } from 'lucide-react';
 
@@ -126,7 +127,7 @@ function App() {
       </nav>
 
       {/* Hero Banner Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Animated Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-blue-900/20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent"></div>
@@ -244,7 +245,7 @@ function App() {
                         <div className="w-32 h-32 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl font-bold shadow-lg">
                           AN
                         </div>
-                        <p className="text-gray-300 text-sm">Your Professional Photo</p>
+                      
                       </div>
                     </div>
                     
