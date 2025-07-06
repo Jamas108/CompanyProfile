@@ -1,10 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Mail, MapPin, Github, Linkedin, ExternalLink, Code, Database, Globe, Smartphone, Download, ArrowRight, Phone } from 'lucide-react';
+import { Menu, X, Mail, MapPin, Github, Linkedin, ExternalLink, Code, Database, Globe, Smartphone, Download, ArrowRight, Phone, Briefcase, GraduationCap, Calendar, Award } from 'lucide-react';
+import ProfilImage from '../src/assets/images/portoimage.png';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isVisible, setIsVisible] = useState({});
 
   // Smooth scroll function
   const scrollToSection = (sectionId) => {
@@ -18,7 +19,7 @@ function App() {
   // Handle scroll to update active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'portfolio', 'contact'];
+      const sections = ['home', 'about', 'education', 'experience', 'skills', 'portfolio', 'contact'];
       const scrollY = window.scrollY;
       sections.forEach(section => {
         const element = document.getElementById(section);
@@ -37,6 +38,34 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // For animation on scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setIsVisible(prev => ({
+              ...prev,
+              [entry.target.id]: true
+            }));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const sections = document.querySelectorAll('section[id]');
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach(section => {
+        observer.unobserve(section);
+      });
+    };
+  }, []);
+
   const skills = [
     { name: 'React.js', level: 90, icon: <Code className="w-6 h-6" /> },
     { name: 'Node.js', level: 85, icon: <Database className="w-6 h-6" /> },
@@ -46,6 +75,69 @@ function App() {
     { name: 'Express.js', level: 85, icon: <Database className="w-6 h-6" /> },
     { name: 'React Native', level: 70, icon: <Smartphone className="w-6 h-6" /> },
     { name: 'PostgreSQL', level: 80, icon: <Database className="w-6 h-6" /> }
+  ];
+
+  const education = [
+    {
+      degree: 'S1 Sistem Informasi',
+      institution: 'Telkom University Surabaya',
+      period: '2021 - Februari 2025',
+      icon: <GraduationCap className="w-6 h-6" />
+    },
+    {
+      degree: 'SMAS Giki 2 Surabaya',
+      institution: 'IPA',
+      period: '2018 - 2021',
+      icon: <GraduationCap className="w-6 h-6" />
+    },
+    {
+      degree: 'SMPN 29 Surabaya',
+      institution: '',
+      period: '2015 - 2018',
+      icon: <GraduationCap className="w-6 h-6" />
+    },
+    {
+      degree: 'SDN Pacar Keling V Surabaya',
+      institution: '',
+      period: '2009 - 2015',
+      icon: <GraduationCap className="w-6 h-6" />
+    }
+  ];
+
+  const experience = [
+    {
+      position: 'Fullstack Developer',
+      company: 'PT. Orindo',
+      period: 'Juli 2025 - Sekarang',
+      icon: <Briefcase className="w-6 h-6" />
+    },
+    {
+      position: 'Fullstack Developer (Magang)',
+      company: 'PT PLN (Persero) Unit Induk Distribusi Jawa Timur',
+      period: 'Juni 2024 - Agustus 2024',
+      icon: <Briefcase className="w-6 h-6" />
+    },
+    {
+      position: 'Asisten Praktikum',
+      company: 'Pemrograman Website, Framework, Mobile APP, Sistem Operasi, DevOps, Keamanan Sistem Informasi',
+      period: '2023 - 2025',
+      icon: <Briefcase className="w-6 h-6" />
+    }
+  ];
+
+  const organizations = [
+    {
+      position: 'Ketua Umum',
+      organization: 'Himpunan Mahasiswa Sistem Informasi',
+      period: '2024 - 2025',
+      icon: <Award className="w-6 h-6" />
+    },
+    {
+      position: 'Staff Adkesma',
+      organization: 'Himpunan Mahasiswa Sistem Informasi',
+      period: '2023 - 2024',
+      icon: <Award className="w-6 h-6" />
+    }
   ];
 
   const projects = [
@@ -75,8 +167,19 @@ function App() {
     }
   ];
 
+  // Simulated profile image (replace with actual import in production)
+
   return (
     <div className="min-h-screen bg-black text-white">
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.8s ease-out forwards;
+        }
+      `}</style>
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-md z-50 border-b border-purple-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,7 +190,7 @@ function App() {
             
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Skills', 'Portfolio', 'Contact'].map((item) => (
+              {['Home', 'About', 'Education', 'Experience', 'Skills', 'Portfolio', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -112,7 +215,7 @@ function App() {
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-purple-900/20">
-              {['Home', 'About', 'Skills', 'Portfolio', 'Contact'].map((item) => (
+              {['Home', 'About', 'Education', 'Experience', 'Skills', 'Portfolio', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -170,16 +273,16 @@ function App() {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <span className="px-4 py-2 bg-purple-900/30 border border-purple-500/30 rounded-full text-sm text-purple-300">
+                <span className="px-4 py-2 bg-purple-900/30 border border-purple-500/30 rounded-full text-sm text-purple-300 hover:bg-purple-800/50 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
                   Laravel
                 </span>
-                <span className="px-4 py-2 bg-blue-900/30 border border-blue-500/30 rounded-full text-sm text-blue-300">
+                <span className="px-4 py-2 bg-blue-900/30 border border-blue-500/30 rounded-full text-sm text-blue-300 hover:bg-blue-800/50 hover:border-blue-400/50 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
                   CodeIgnitier
                 </span>
-                <span className="px-4 py-2 bg-green-900/30 border border-green-500/30 rounded-full text-sm text-green-300">
+                <span className="px-4 py-2 bg-green-900/30 border border-green-500/30 rounded-full text-sm text-green-300 hover:bg-green-800/50 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
                   Flutter
                 </span>
-                <span className="px-4 py-2 bg-pink-900/30 border border-pink-500/30 rounded-full text-sm text-pink-300">
+                <span className="px-4 py-2 bg-pink-900/30 border border-pink-500/30 rounded-full text-sm text-pink-300 hover:bg-pink-800/50 hover:border-pink-400/50 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm">
                   React Native
                 </span>
               </div>
@@ -239,35 +342,15 @@ function App() {
                   
                   {/* Main Photo */}
                   <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden border-2 border-purple-500/30 shadow-2xl shadow-purple-500/20">
-                    {/* Placeholder for your photo */}
-                    <div className="w-full h-full bg-gradient-to-br from-purple-900/50 to-blue-900/50 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-32 h-32 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl font-bold shadow-lg">
-                          AN
-                        </div>
-                      
-                      </div>
-                    </div>
+                    {/* Your actual photo */}
+                    <img 
+                      src={ProfilImage} 
+                      alt="Ansar Nur Jamas" 
+                      className="w-full h-full object-cover object-center"
+                    />
                     
                     {/* Overlay Effect */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                  </div>
-                </div>
-
-                {/* Floating Stats */}
-                <div className="absolute -left-8 top-1/2 transform -translate-y-1/2 bg-black/80 backdrop-blur-sm border border-purple-500/30 rounded-xl p-4 shadow-lg">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-400">3+</div>
-                    <div className="text-sm text-gray-400">Years</div>
-                    <div className="text-xs text-gray-500">Experience</div>
-                  </div>
-                </div>
-
-                <div className="absolute -right-8 top-1/4 bg-black/80 backdrop-blur-sm border border-purple-500/30 rounded-xl p-4 shadow-lg">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-400">50+</div>
-                    <div className="text-sm text-gray-400">Projects</div>
-                    <div className="text-xs text-gray-500">Completed</div>
                   </div>
                 </div>
               </div>
@@ -284,7 +367,7 @@ function App() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4">
+      <section id="about" className={`py-20 px-4 ${isVisible.about ? 'animate-fadeIn' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
@@ -338,8 +421,148 @@ function App() {
         </div>
       </section>
 
+      {/* Education Section with Timeline */}
+      <section id="education" className={`py-20 px-4 bg-gray-900/30 ${isVisible.education ? 'animate-fadeIn' : 'opacity-0'}`}>
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-16">
+            <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+              Pendidikan
+            </span>
+          </h2>
+          
+          <div className="relative">
+            {/* Vertical timeline line */}
+            <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 h-full w-1 bg-gradient-to-b from-purple-500 to-purple-600"></div>
+            
+            {/* Timeline items */}
+            <div className="space-y-12">
+              {education.map((item, index) => (
+                <div key={index} className={`relative flex flex-col md:flex-row gap-8 items-start md:items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                  {/* Timeline connector with icon */}
+                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -top-1 w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-purple-500/30">
+                    <div className="text-white">
+                      {item.icon}
+                    </div>
+                  </div>
+                  
+                  {/* Timeline dot */}
+                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -top-1 w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-700 opacity-50 animate-ping"></div>
+                  
+                  {/* Content */}
+                  <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} pl-16 md:pl-0`}>
+                    <div className="p-6 bg-gray-900/50 rounded-lg border border-purple-900/20 hover:border-purple-500/30 transition-all duration-300 hover:transform hover:scale-105 backdrop-blur-sm">
+                      <h3 className="text-xl font-semibold text-purple-400">{item.degree}</h3>
+                      {item.institution && <p className="text-gray-300 mt-1">{item.institution}</p>}
+                      <div className={`flex items-center gap-2 mt-3 text-sm text-gray-400 ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`}>
+                        <Calendar className="w-4 h-4" />
+                        <span>{item.period}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Empty space for the other side */}
+                  <div className="hidden md:block w-5/12"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section with Timeline */}
+      <section id="experience" className={`py-20 px-4 ${isVisible.experience ? 'animate-fadeIn' : 'opacity-0'}`}>
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-16">
+            <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+              Pengalaman Bekerja
+            </span>
+          </h2>
+          
+          <div className="relative">
+            {/* Vertical timeline line */}
+            <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 h-full w-1 bg-gradient-to-b from-purple-600 to-blue-600"></div>
+            
+            {/* Timeline items */}
+            <div className="space-y-12">
+              {experience.map((item, index) => (
+                <div key={index} className={`relative flex flex-col md:flex-row gap-8 items-start md:items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                  {/* Timeline connector with icon */}
+                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -top-1 w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center z-10 shadow-lg shadow-blue-500/30">
+                    <div className="text-white">
+                      {item.icon}
+                    </div>
+                  </div>
+                  
+                  {/* Timeline dot */}
+                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -top-1 w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 opacity-50 animate-ping"></div>
+                  
+                  {/* Content */}
+                  <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} pl-16 md:pl-0`}>
+                    <div className="p-6 bg-gray-900/50 rounded-lg border border-purple-900/20 hover:border-blue-500/30 transition-all duration-300 hover:transform hover:scale-105 backdrop-blur-sm">
+                      <h3 className="text-xl font-semibold text-blue-400">{item.position}</h3>
+                      <p className="text-gray-300 mt-1">{item.company}</p>
+                      <div className={`flex items-center gap-2 mt-3 text-sm text-gray-400 ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`}>
+                        <Calendar className="w-4 h-4" />
+                        <span>{item.period}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Empty space for the other side */}
+                  <div className="hidden md:block w-5/12"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Organization Experience */}
+          <h3 className="text-2xl font-bold text-center my-16">
+            <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+              Pengalaman Organisasi
+            </span>
+          </h3>
+          
+          <div className="relative">
+            {/* Vertical timeline line */}
+            <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 h-full w-1 bg-gradient-to-b from-blue-600 to-purple-600"></div>
+            
+            {/* Timeline items */}
+            <div className="space-y-12">
+              {organizations.map((item, index) => (
+                <div key={index} className={`relative flex flex-col md:flex-row gap-8 items-start md:items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                  {/* Timeline connector with icon */}
+                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -top-1 w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center z-10 shadow-lg shadow-blue-500/30">
+                    <div className="text-white">
+                      {item.icon}
+                    </div>
+                  </div>
+                  
+                  {/* Timeline dot */}
+                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -top-1 w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 opacity-50 animate-ping"></div>
+                  
+                  {/* Content */}
+                  <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} pl-16 md:pl-0`}>
+                    <div className="p-6 bg-gray-900/50 rounded-lg border border-purple-900/20 hover:border-blue-500/30 transition-all duration-300 hover:transform hover:scale-105 backdrop-blur-sm">
+                      <h3 className="text-xl font-semibold text-blue-400">{item.position}</h3>
+                      <p className="text-gray-300 mt-1">{item.organization}</p>
+                      <div className={`flex items-center gap-2 mt-3 text-sm text-gray-400 ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`}>
+                        <Calendar className="w-4 h-4" />
+                        <span>{item.period}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Empty space for the other side */}
+                  <div className="hidden md:block w-5/12"></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-4 bg-gray-900/30">
+      <section id="skills" className={`py-20 px-4 bg-gray-900/30 ${isVisible.skills ? 'animate-fadeIn' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
@@ -348,17 +571,19 @@ function App() {
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {skills.map((skill, index) => (
-              <div key={index} className="bg-gray-900/50 p-6 rounded-lg border border-purple-900/20 hover:border-purple-500/50 transition-all duration-300">
+              <div key={index} className="bg-gray-900/50 p-6 rounded-lg border border-purple-900/20 hover:border-purple-500/50 transition-all duration-300 backdrop-blur-sm">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="text-purple-400">{skill.icon}</div>
                   <h3 className="text-xl font-semibold">{skill.name}</h3>
                   <span className="text-purple-400 font-semibold ml-auto">{skill.level}%</span>
                 </div>
-                <div className="w-full bg-gray-800 rounded-full h-2">
+                <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
                   <div
-                    className="bg-gradient-to-r from-purple-500 to-purple-700 h-2 rounded-full transition-all duration-1000 ease-out"
+                    className="bg-gradient-to-r from-purple-500 to-purple-700 h-2 rounded-full transition-all duration-1000 ease-out relative"
                     style={{ width: `${skill.level}%` }}
-                  ></div>
+                  >
+                    <div className="absolute inset-0 bg-white/20 rounded-full animate-pulse"></div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -367,7 +592,7 @@ function App() {
       </section>
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-20 px-4">
+      <section id="portfolio" className={`py-20 px-4 ${isVisible.portfolio ? 'animate-fadeIn' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
@@ -389,7 +614,7 @@ function App() {
                     {project.tech.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-1 bg-purple-900/30 text-purple-300 rounded-full text-xs"
+                        className="px-3 py-1 bg-purple-900/30 text-purple-300 rounded-full text-xs hover:bg-purple-800/50 hover:text-purple-200 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
                       >
                         {tech}
                       </span>
@@ -419,7 +644,7 @@ function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 bg-gray-900/30">
+      <section id="contact" className={`py-20 px-4 bg-gray-900/30 ${isVisible.contact ? 'animate-fadeIn' : 'opacity-0'}`}>
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
