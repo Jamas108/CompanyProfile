@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Mail, MapPin, Github, Linkedin, ExternalLink, Code, Database, Globe, Smartphone, Download, ArrowRight, Phone, Briefcase, GraduationCap, Calendar, Award } from 'lucide-react';
+import { Menu, X, Mail, MapPin, Github, Linkedin, ExternalLink, Code, Database, Globe, Smartphone, Download, ArrowRight, Phone, Briefcase, GraduationCap, Calendar, Award, Instagram } from 'lucide-react';
 import ProfilImage from '../src/assets/images/portoimage.png';
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
         if (element) {
           const offsetTop = element.offsetTop - 100;
           const offsetBottom = offsetTop + element.offsetHeight;
-          
+
           if (scrollY >= offsetTop && scrollY < offsetBottom) {
             setActiveSection(section);
           }
@@ -67,14 +67,14 @@ function App() {
   }, []);
 
   const skills = [
-    { name: 'React.js', level: 90, icon: <Code className="w-6 h-6" /> },
-    { name: 'Node.js', level: 85, icon: <Database className="w-6 h-6" /> },
-    { name: 'JavaScript', level: 95, icon: <Globe className="w-6 h-6" /> },
-    { name: 'TypeScript', level: 80, icon: <Code className="w-6 h-6" /> },
-    { name: 'MongoDB', level: 75, icon: <Database className="w-6 h-6" /> },
-    { name: 'Express.js', level: 85, icon: <Database className="w-6 h-6" /> },
-    { name: 'React Native', level: 70, icon: <Smartphone className="w-6 h-6" /> },
-    { name: 'PostgreSQL', level: 80, icon: <Database className="w-6 h-6" /> }
+    { name: 'Laravel', level: 98, icon: <Globe className="w-6 h-6" /> },
+    { name: 'CodeIgnitier', level: 90, icon: <Globe className="w-6 h-6" /> },
+    { name: 'Flutter', level: 70, icon: <Smartphone className="w-6 h-6" /> },
+    { name: 'React Native', level: 90, icon: <Smartphone className="w-6 h-6" /> },
+    { name: 'MySQL', level: 98, icon: <Database className="w-6 h-6" /> },
+    { name: 'PostgreSQL', level: 90, icon: <Database className="w-6 h-6" /> },
+    { name: 'Firebase', level: 90, icon: <Database className="w-6 h-6" /> },
+    { name: 'MongoDB', level: 70, icon: <Database className="w-6 h-6" /> }
   ];
 
   const education = [
@@ -82,46 +82,53 @@ function App() {
       degree: 'S1 Sistem Informasi',
       institution: 'Telkom University Surabaya',
       period: '2021 - Februari 2025',
-      icon: <GraduationCap className="w-6 h-6" />
+      icon: <GraduationCap className="w-6 h-6" />,
+      description: "IPK 3.69 dengan predikat kelulusan CUMLAUDE"
     },
     {
       degree: 'SMAS Giki 2 Surabaya',
       institution: 'IPA',
       period: '2018 - 2021',
-      icon: <GraduationCap className="w-6 h-6" />
+      icon: <GraduationCap className="w-6 h-6" />,
+      description: "Fokus pada mata pelajaran IPA"
     },
     {
       degree: 'SMPN 29 Surabaya',
       institution: '',
       period: '2015 - 2018',
-      icon: <GraduationCap className="w-6 h-6" />
+      icon: <GraduationCap className="w-6 h-6" />,
+      description: ""
     },
     {
       degree: 'SDN Pacar Keling V Surabaya',
       institution: '',
       period: '2009 - 2015',
-      icon: <GraduationCap className="w-6 h-6" />
+      icon: <GraduationCap className="w-6 h-6" />,
+      description: ""
     }
   ];
 
   const experience = [
     {
       position: 'Fullstack Developer',
-      company: 'PT. Orindo',
+      company: 'PT. Orindo Bangun Samudera',
       period: 'Juli 2025 - Sekarang',
-      icon: <Briefcase className="w-6 h-6" />
+      icon: <Briefcase className="w-6 h-6" />,
+      description: "Pengembangan website internal perusahaan menggunakan framework Laravel"
     },
     {
       position: 'Fullstack Developer (Magang)',
       company: 'PT PLN (Persero) Unit Induk Distribusi Jawa Timur',
       period: 'Juni 2024 - Agustus 2024',
-      icon: <Briefcase className="w-6 h-6" />
+      icon: <Briefcase className="w-6 h-6" />,
+      description: "Membangun dan mengembangkan aplikasi internal perusahaan untuk mendukung operasi distribusi listrik"
     },
     {
       position: 'Asisten Praktikum',
       company: 'Pemrograman Website, Framework, Mobile APP, Sistem Operasi, DevOps, Keamanan Sistem Informasi',
       period: '2023 - 2025',
-      icon: <Briefcase className="w-6 h-6" />
+      icon: <Briefcase className="w-6 h-6" />,
+      description: "Membantu mahasiswa dalam memahami dan menerapkan konsep pemrograman dalam berbagai mata kuliah"
     }
   ];
 
@@ -130,13 +137,15 @@ function App() {
       position: 'Ketua Umum',
       organization: 'Himpunan Mahasiswa Sistem Informasi',
       period: '2024 - 2025',
-      icon: <Award className="w-6 h-6" />
+      icon: <Award className="w-6 h-6" />,
+      description: "Memimpin dan mengkoordinasikan seluruh kegiatan himpunan untuk meningkatkan kualitas mahasiswa"
     },
     {
       position: 'Staff Adkesma',
       organization: 'Himpunan Mahasiswa Sistem Informasi',
       period: '2023 - 2024',
-      icon: <Award className="w-6 h-6" />
+      icon: <Award className="w-6 h-6" />,
+      description: "Bertugas dalam meningkatkan kesejahteraan mahasiswa dan mengadakan program-program sosial"
     }
   ];
 
@@ -167,7 +176,50 @@ function App() {
     }
   ];
 
-  // Simulated profile image (replace with actual import in production)
+  const contactInfo = [
+    {
+      icon: <Mail className="w-6 h-6" />,
+      title: "Email",
+      value: "jamasguitarist@gmail.com",
+      link: "mailto:jamasguitarist@gmail.com",
+      color: "from-purple-500 to-pink-500"
+    },
+    {
+      icon: <Phone className="w-6 h-6" />,
+      title: "WhatsApp",
+      value: "+62 821-3673-6166",
+      link: "https://wa.me/6282136736166",
+      color: "from-green-500 to-emerald-600"
+    },
+    {
+      icon: <Github className="w-6 h-6" />,
+      title: "GitHub",
+      value: "jamas108",
+      link: "https://github.com/jamas108",
+      color: "from-gray-700 to-gray-900"
+    },
+    {
+      icon: <Linkedin className="w-6 h-6" />,
+      title: "LinkedIn",
+      value: "Ansar Nur Jamas",
+      link: "https://www.linkedin.com/in/ansar-nur-jamas-163096310/",
+      color: "from-blue-600 to-blue-800"
+    },
+    {
+      icon: <Instagram className="w-6 h-6" />,
+      title: "Instagram",
+      value: "@jamass10_",
+      link: "https://instagram.com/jamass10_",
+      color: "from-pink-500 to-purple-600"
+    },
+    {
+      icon: <MapPin className="w-6 h-6" />,
+      title: "Location",
+      value: "Surabaya, Indonesia",
+      link: "https://maps.google.com/?q=Surabaya,Indonesia",
+      color: "from-red-500 to-orange-500"
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -187,16 +239,15 @@ function App() {
             <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
               JamsCode
             </div>
-            
+
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
               {['Home', 'About', 'Education', 'Experience', 'Skills', 'Portfolio', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`hover:text-purple-400 transition-colors duration-300 ${
-                    activeSection === item.toLowerCase() ? 'text-purple-400' : 'text-gray-300'
-                  }`}
+                  className={`hover:text-purple-400 transition-colors duration-300 ${activeSection === item.toLowerCase() ? 'text-purple-400' : 'text-gray-300'
+                    }`}
                 >
                   {item}
                 </button>
@@ -246,11 +297,11 @@ function App() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            
+
             {/* Left Side - Text Content */}
             <div className="space-y-8">
               <div className="space-y-2">
-                
+
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
                   <span className="text-white">Hello, I'm</span>
                   <br />
@@ -262,12 +313,12 @@ function App() {
 
               <div className="space-y-4">
                 <h2 className="text-2xl md:text-3xl font-semibold text-gray-300">
-                  <span className="text-purple-400">Fullstack Developer</span> & 
+                  <span className="text-purple-400">Fullstack Developer</span> &
                   <span className="text-blue-400"> Mobile App Creator</span>
                 </h2>
                 <p className="text-lg text-gray-400 leading-relaxed max-w-2xl">
-                  Mengembangkan aplikasi web dan mobile yang inovatif dengan teknologi terkini. 
-                  Spesialisasi dalam React, Node.js, Flutter, dan React Native untuk menciptakan 
+                  Mengembangkan aplikasi web dan mobile yang inovatif dengan teknologi terkini.
+                  Spesialisasi dalam React, Node.js, Flutter, dan React Native untuk menciptakan
                   solusi digital yang efisien dan user-friendly.
                 </p>
               </div>
@@ -334,21 +385,21 @@ function App() {
                 {/* Decorative Elements */}
                 <div className="absolute -top-4 -left-4 w-72 h-72 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full blur-2xl animate-pulse"></div>
                 <div className="absolute -bottom-4 -right-4 w-64 h-64 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
-                
+
                 {/* Photo Container */}
                 <div className="relative z-10 w-80 h-80 md:w-96 md:h-96">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500 via-purple-600 to-blue-600 rounded-2xl rotate-6 animate-pulse"></div>
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-blue-600 to-pink-600 rounded-2xl -rotate-6 animate-pulse delay-300"></div>
-                  
+
                   {/* Main Photo */}
                   <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden border-2 border-purple-500/30 shadow-2xl shadow-purple-500/20">
                     {/* Your actual photo */}
-                    <img 
-                      src={ProfilImage} 
-                      alt="Ansar Nur Jamas" 
+                    <img
+                      src={ProfilImage}
+                      alt="Ansar Nur Jamas"
                       className="w-full h-full object-cover object-center"
                     />
-                    
+
                     {/* Overlay Effect */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                   </div>
@@ -371,49 +422,44 @@ function App() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-              About Me
+              Tentang Saya
             </span>
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h3 className="text-2xl font-semibold mb-6 text-purple-400">
-                Hello! I'm Ansar Nur Jamas
+                Halo! Nama Saya Ansar Nur Jamas
               </h3>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                A 22-year-old passionate Fullstack Developer based in Surabaya, Indonesia. 
-                I graduated with a Bachelor's degree in Information Systems from Telkom University Surabaya, 
-                where I developed a strong foundation in software development and system design.
+                Perkenalkan, Nama Saya Ansar Nur Jamas. Saya biasa di panggil Ansar atau Jamas. Saya berusia 22 Tahun dan tinggal di Surabaya. Saya merupakan lulusan kampus Telkom University Surabaya Jurusan S1 Sistem Informasi dengan IPK 3.69 dan predikat kelulusan CUMLAUDE.
               </p>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                I specialize in creating modern, responsive web applications using cutting-edge technologies. 
-                My expertise spans across frontend development with React.js and backend development with Node.js, 
-                allowing me to build complete end-to-end solutions.
+                Saat berkuliah saya aktif dalam mengikuti kegiatan organisasi dan kegiatan akademik seperti menjadi asisten praktikum mata kuliah. minat saya dalam bidang teknologi membuat saya selalu bersemangat untuk menambah pengalaman dan pengetahuan tentang teknologi atau hal baru.
               </p>
               <p className="text-gray-300 mb-8 leading-relaxed">
-                I'm constantly learning and adapting to new technologies, ensuring that I stay current 
-                with industry best practices and emerging trends in software development.
+                Saat ini saya sudah membuat beberapa aplikasi berupa website maupun android yang temanya menyesuaikan permintaan pelanggan. Saya merupakan fullstack developer yang mampu membuat aplikasi dengan beberapa bahasa pemrograman dan framework sesuai kebutuhan.
               </p>
             </div>
             <div className="space-y-6">
               <div className="bg-gray-900/50 p-6 rounded-lg border border-purple-900/20">
-                <h4 className="text-xl font-semibold mb-4 text-purple-400">Personal Info</h4>
+                <h4 className="text-xl font-semibold mb-4 text-purple-400">Informasi Pribadi</h4>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <MapPin className="w-5 h-5 text-purple-400" />
                     <span className="text-gray-300">Surabaya, Indonesia</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-purple-400 font-semibold">Age:</span>
-                    <span className="text-gray-300">22 years old</span>
+                    <span className="text-purple-400 font-semibold">Umur:</span>
+                    <span className="text-gray-300">22 Tahun</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-purple-400 font-semibold">Education:</span>
+                    <span className="text-purple-400 font-semibold">Pendidikan:</span>
                     <span className="text-gray-300">S1 Sistem Informasi</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-purple-400 font-semibold">University:</span>
+                    <span className="text-purple-400 font-semibold">Lembaga:</span>
                     <span className="text-gray-300">Telkom University Surabaya</span>
-                  </div>
+                  </div> 
                 </div>
               </div>
             </div>
@@ -421,7 +467,7 @@ function App() {
         </div>
       </section>
 
-      {/* Education Section with Timeline */}
+      {/* Education Section - REDESIGNED */}
       <section id="education" className={`py-20 px-4 bg-gray-900/30 ${isVisible.education ? 'animate-fadeIn' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
@@ -429,47 +475,45 @@ function App() {
               Pendidikan
             </span>
           </h2>
-          
-          <div className="relative">
-            {/* Vertical timeline line */}
-            <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 h-full w-1 bg-gradient-to-b from-purple-500 to-purple-600"></div>
-            
-            {/* Timeline items */}
-            <div className="space-y-12">
-              {education.map((item, index) => (
-                <div key={index} className={`relative flex flex-col md:flex-row gap-8 items-start md:items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                  {/* Timeline connector with icon */}
-                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -top-1 w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-700 flex items-center justify-center z-10 shadow-lg shadow-purple-500/30">
-                    <div className="text-white">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {education.map((item, index) => (
+              <div 
+                key={index} 
+                className="group bg-gray-900/50 rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/50 transition-all duration-500 hover:shadow-lg hover:shadow-purple-500/10 backdrop-blur-sm transform hover:scale-105"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-gradient-to-br from-purple-500/20 to-purple-700/20 group-hover:from-purple-500/30 group-hover:to-purple-700/30 transition-all duration-500">
+                    <div className="text-purple-400 group-hover:text-purple-300 transition-colors duration-500">
                       {item.icon}
                     </div>
                   </div>
                   
-                  {/* Timeline dot */}
-                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -top-1 w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-purple-700 opacity-50 animate-ping"></div>
-                  
-                  {/* Content */}
-                  <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} pl-16 md:pl-0`}>
-                    <div className="p-6 bg-gray-900/50 rounded-lg border border-purple-900/20 hover:border-purple-500/30 transition-all duration-300 hover:transform hover:scale-105 backdrop-blur-sm">
-                      <h3 className="text-xl font-semibold text-purple-400">{item.degree}</h3>
-                      {item.institution && <p className="text-gray-300 mt-1">{item.institution}</p>}
-                      <div className={`flex items-center gap-2 mt-3 text-sm text-gray-400 ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`}>
-                        <Calendar className="w-4 h-4" />
-                        <span>{item.period}</span>
-                      </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-300 transition-colors duration-300">
+                      {item.degree}
+                    </h3>
+                    {item.institution && (
+                      <p className="text-gray-300 mb-2">{item.institution}</p>
+                    )}
+                    {item.description && (
+                      <p className="text-gray-400 text-sm mt-2 group-hover:text-gray-300 transition-colors duration-300">
+                        {item.description}
+                      </p>
+                    )}
+                    <div className="flex items-center gap-2 mt-3 text-sm text-gray-400">
+                      <Calendar className="w-4 h-4 text-purple-500" />
+                      <span>{item.period}</span>
                     </div>
                   </div>
-                  
-                  {/* Empty space for the other side */}
-                  <div className="hidden md:block w-5/12"></div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Experience Section with Timeline */}
+      {/* Experience Section - REDESIGNED */}
       <section id="experience" className={`py-20 px-4 ${isVisible.experience ? 'animate-fadeIn' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
@@ -477,86 +521,101 @@ function App() {
               Pengalaman Bekerja
             </span>
           </h2>
-          
-          <div className="relative">
-            {/* Vertical timeline line */}
-            <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 h-full w-1 bg-gradient-to-b from-purple-600 to-blue-600"></div>
-            
-            {/* Timeline items */}
-            <div className="space-y-12">
-              {experience.map((item, index) => (
-                <div key={index} className={`relative flex flex-col md:flex-row gap-8 items-start md:items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                  {/* Timeline connector with icon */}
-                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -top-1 w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center z-10 shadow-lg shadow-blue-500/30">
-                    <div className="text-white">
-                      {item.icon}
-                    </div>
-                  </div>
-                  
-                  {/* Timeline dot */}
-                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -top-1 w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 opacity-50 animate-ping"></div>
-                  
-                  {/* Content */}
-                  <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} pl-16 md:pl-0`}>
-                    <div className="p-6 bg-gray-900/50 rounded-lg border border-purple-900/20 hover:border-blue-500/30 transition-all duration-300 hover:transform hover:scale-105 backdrop-blur-sm">
-                      <h3 className="text-xl font-semibold text-blue-400">{item.position}</h3>
-                      <p className="text-gray-300 mt-1">{item.company}</p>
-                      <div className={`flex items-center gap-2 mt-3 text-sm text-gray-400 ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`}>
-                        <Calendar className="w-4 h-4" />
-                        <span>{item.period}</span>
+
+          <div className="space-y-8">
+            {experience.map((item, index) => (
+              <div 
+                key={index} 
+                className="group relative overflow-hidden rounded-xl border border-blue-500/20 hover:border-blue-500/50 transition-all duration-500 backdrop-blur-sm"
+              >
+                {/* Background gradient effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/95 to-blue-900/20 opacity-90 group-hover:opacity-80 transition-opacity duration-500"></div>
+                
+                <div className="relative p-6 md:p-8">
+                  <div className="flex flex-col md:flex-row md:items-center gap-6">
+                    {/* Icon container */}
+                    <div className="flex-shrink-0">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/30 to-purple-500/30 flex items-center justify-center group-hover:from-blue-500/50 group-hover:to-purple-500/50 transition-all duration-500 shadow-lg shadow-blue-500/10">
+                        <div className="text-blue-400 group-hover:text-blue-300 transition-colors duration-500">
+                          {item.icon}
+                        </div>
                       </div>
                     </div>
+                    
+                    {/* Content */}
+                    <div className="flex-1">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                        <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300">
+                          {item.position}
+                        </h3>
+                        <div className="flex items-center gap-2 text-sm text-gray-400 bg-gray-800/50 px-4 py-1 rounded-full backdrop-blur-sm w-fit">
+                          <Calendar className="w-4 h-4 text-blue-500" />
+                          <span>{item.period}</span>
+                        </div>
+                      </div>
+                      
+                      <p className="text-gray-300 mt-2 group-hover:text-white transition-colors duration-300">
+                        {item.company}
+                      </p>
+                      
+                      <p className="text-gray-400 mt-3 group-hover:text-gray-300 transition-colors duration-300">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-                  
-                  {/* Empty space for the other side */}
-                  <div className="hidden md:block w-5/12"></div>
                 </div>
-              ))}
-            </div>
+                
+                {/* Animated border effect */}
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500/30 rounded-xl transition-all duration-500 pointer-events-none"></div>
+              </div>
+            ))}
           </div>
 
-          {/* Organization Experience */}
+          {/* Organization Experience - REDESIGNED */}
           <h3 className="text-2xl font-bold text-center my-16">
             <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
               Pengalaman Organisasi
             </span>
           </h3>
-          
-          <div className="relative">
-            {/* Vertical timeline line */}
-            <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 h-full w-1 bg-gradient-to-b from-blue-600 to-purple-600"></div>
-            
-            {/* Timeline items */}
-            <div className="space-y-12">
-              {organizations.map((item, index) => (
-                <div key={index} className={`relative flex flex-col md:flex-row gap-8 items-start md:items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                  {/* Timeline connector with icon */}
-                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -top-1 w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center z-10 shadow-lg shadow-blue-500/30">
-                    <div className="text-white">
-                      {item.icon}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {organizations.map((item, index) => (
+              <div 
+                key={index} 
+                className="group relative overflow-hidden rounded-xl border border-purple-500/20 hover:border-purple-500/50 transition-all duration-500 backdrop-blur-sm transform hover:scale-105"
+              >
+                {/* Background gradient effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900/95 to-purple-900/20 opacity-90 group-hover:opacity-80 transition-opacity duration-500"></div>
+                
+                <div className="relative p-6">
+                  <div className="flex items-start gap-4">
+                    {/* Icon container */}
+                    <div className="p-4 rounded-lg bg-gradient-to-br from-purple-500/20 to-blue-500/20 group-hover:from-purple-500/30 group-hover:to-blue-500/30 transition-all duration-500">
+                      <div className="text-purple-400 group-hover:text-purple-300 transition-colors duration-500">
+                        {item.icon}
+                      </div>
                     </div>
-                  </div>
-                  
-                  {/* Timeline dot */}
-                  <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -top-1 w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 opacity-50 animate-ping"></div>
-                  
-                  {/* Content */}
-                  <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} pl-16 md:pl-0`}>
-                    <div className="p-6 bg-gray-900/50 rounded-lg border border-purple-900/20 hover:border-blue-500/30 transition-all duration-300 hover:transform hover:scale-105 backdrop-blur-sm">
-                      <h3 className="text-xl font-semibold text-blue-400">{item.position}</h3>
-                      <p className="text-gray-300 mt-1">{item.organization}</p>
-                      <div className={`flex items-center gap-2 mt-3 text-sm text-gray-400 ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`}>
-                        <Calendar className="w-4 h-4" />
+                    
+                    {/* Content */}
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors duration-300">
+                        {item.position}
+                      </h3>
+                      <p className="text-gray-300 mt-1 group-hover:text-white transition-colors duration-300">
+                        {item.organization}
+                      </p>
+                      <p className="text-gray-400 text-sm mt-3 group-hover:text-gray-300 transition-colors duration-300">
+                        {item.description}
+                      </p>
+                      <div className="flex items-center gap-2 mt-3 text-sm text-gray-400">
+                        <Calendar className="w-4 h-4 text-purple-500" />
                         <span>{item.period}</span>
                       </div>
                     </div>
                   </div>
-                  
-                  {/* Empty space for the other side */}
-                  <div className="hidden md:block w-5/12"></div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -566,7 +625,7 @@ function App() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-              Skills & Expertise
+              Kemampuan
             </span>
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -643,89 +702,58 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section - REDESIGNED */}
       <section id="contact" className={`py-20 px-4 bg-gray-900/30 ${isVisible.contact ? 'animate-fadeIn' : 'opacity-0'}`}>
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-              Get In Touch
+              Hubungi Saya
             </span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-semibold mb-6 text-purple-400">Let's Work Together</h3>
-              <p className="text-gray-300 mb-8 leading-relaxed">
-                I'm always interested in new opportunities and exciting projects. 
-                Whether you have a project in mind or just want to chat about technology, 
-                feel free to reach out!
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <Mail className="w-6 h-6 text-purple-400" />
-                  <span className="text-gray-300">ansarnurjamas@gmail.com</span>
+          
+          <div className="text-center mb-12">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Anda dapat menghubungi saya dari kontak yang tertera di bawah ini
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {contactInfo.map((item, index) => (
+              <a 
+                key={index} 
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden rounded-xl border border-gray-700 hover:border-gray-500 transition-all duration-500 transform hover:scale-105 backdrop-blur-sm"
+              >
+                {/* Background gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}></div>
+                
+                <div className="relative p-6 flex items-center gap-4">
+                  {/* Icon container */}
+                  <div className={`p-4 rounded-lg bg-gradient-to-br ${item.color} bg-opacity-10 group-hover:bg-opacity-20 transition-all duration-500`}>
+                    <div className="text-white">
+                      {item.icon}
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-300 group-hover:text-white transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-400 group-hover:text-gray-200 transition-colors duration-300">
+                      {item.value}
+                    </p>
+                  </div>
+                  
+                  {/* Hover indicator */}
+                  <div className="absolute right-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <ExternalLink className="w-5 h-5 text-gray-400" />
+                  </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <Phone className="w-6 h-6 text-purple-400" />
-                  <span className="text-gray-300">+62 812-3456-7890</span>
-                </div>
-                <div className="flex items-center gap-4">
-                  <MapPin className="w-6 h-6 text-purple-400" />
-                  <span className="text-gray-300">Surabaya, Indonesia</span>
-                </div>
-              </div>
-              <div className="flex gap-4 mt-8">
-                <a
-                  href="https://github.com/ansarnurjamas"
-                  className="p-3 bg-gray-800 rounded-lg hover:bg-purple-600 transition-colors duration-300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github className="w-6 h-6" />
-                </a>
-                <a
-                  href="https://linkedin.com/in/ansarnurjamas"
-                  className="p-3 bg-gray-800 rounded-lg hover:bg-purple-600 transition-colors duration-300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Linkedin className="w-6 h-6" />
-                </a>
-              </div>
-            </div>
-            <div className="bg-gray-900/50 p-8 rounded-lg border border-purple-900/20">
-              <div className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-purple-400">Name</label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-purple-500 focus:outline-none transition-colors duration-300"
-                    placeholder="Your Name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-purple-400">Email</label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-purple-500 focus:outline-none transition-colors duration-300"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-purple-400">Message</label>
-                  <textarea
-                    rows="4"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:border-purple-500 focus:outline-none transition-colors duration-300"
-                    placeholder="Your message..."
-                  ></textarea>
-                </div>
-                <button
-                  onClick={() => alert('Message sent! (Demo functionality)')}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-purple-500 to-purple-700 rounded-lg hover:from-purple-600 hover:to-purple-800 transition-all duration-300 transform hover:scale-105"
-                >
-                  Send Message
-                </button>
-              </div>
-            </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>
