@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Mail, MapPin, Github, Linkedin, ExternalLink, Code, Database, Globe, Smartphone, Download, ArrowRight, Phone, Briefcase, GraduationCap, Calendar, Award, Instagram } from 'lucide-react';
+import { Menu, X, Mail, MapPin, Github, Linkedin, ExternalLink, Code, Database, 
+  Globe, Smartphone, Download, ArrowRight, Phone, Briefcase, GraduationCap, 
+  Calendar, Award, Instagram, ArrowUp } from 'lucide-react';
 import ProfilImage from '../src/assets/images/portoimage.png';
+import SiditaImage from '../src/assets/images/sidita.png';
+import NetrisImage from '../src/assets/images/netrislogoo.png';
+import pln from '../src/assets/images/pln.png';
+// Import Favicon (optional)
+// import Favicon from '../src/assets/images/favicon.ico';
+// import { Helmet } from 'react-helmet'; // Uncomment if using react-helmet
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection, setActiveSection] = useState('beranda');
   const [isVisible, setIsVisible] = useState({});
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Smooth scroll function
   const scrollToSection = (sectionId) => {
@@ -19,7 +28,7 @@ function App() {
   // Handle scroll to update active section
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'education', 'experience', 'skills', 'portfolio', 'contact'];
+      const sections = ['beranda', 'informasi', 'pendidikan', 'pengalaman', 'kemampuan', 'portfolio', 'kontak'];
       const scrollY = window.scrollY;
       sections.forEach(section => {
         const element = document.getElementById(section);
@@ -32,6 +41,13 @@ function App() {
           }
         }
       });
+      
+      // Check if we should show the scroll-to-top button
+      if (window.scrollY > 500) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -65,6 +81,14 @@ function App() {
       });
     };
   }, []);
+  
+  // Function to scroll to top
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const skills = [
     { name: 'Laravel', level: 98, icon: <Globe className="w-6 h-6" /> },
@@ -151,29 +175,29 @@ function App() {
 
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution dengan React, Node.js, dan MongoDB. Fitur meliputi autentikasi user, integrasi payment, dan admin dashboard.',
-      tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop',
+      title: 'SIDITA',
+      description: 'Aplikasi pengelolahan vendor yang di bangun dengan framework codeignitier4 serta database MySql',
+      tech: ['PHP', 'CodeIgnitier4', 'MySQL', 'Bootsrap'],
+      image: SiditaImage,
+      github: 'https://github.com/Jamas108/sidita',
+      demo: 'https://sidita.online'
+    },
+    {
+      title: 'NETRIS APK',
+      description: 'Aplikasi android untuk mencari tempat perbaikan ban terdekat. Dibuat bersama tim penelitian Netris Sistem Informasi TELU Surabaya',
+      tech: ['JavaScript', 'React Native', 'Firebase', 'Cloudinary'],
+      image: NetrisImage,
       github: '#',
       demo: '#'
     },
     {
-      title: 'Task Management App',
-      description: 'Aplikasi manajemen tugas kolaboratif dengan real-time updates, fitur tim collaboration, dan tracking deadline.',
-      tech: ['React', 'Socket.io', 'Express', 'PostgreSQL'],
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop',
-      github: '#',
+      title: 'PLN Inventory',
+      description: 'Aplikasi website yang digunakan oleh PLN UID JATIM untuk mengelola pengelolaan barang untuk di distribusikan ke seluruh PLN cabang jawa timur.',
+      tech: ['PHP', 'Laravel', 'MySQL', 'Firebase', 'Bootstrap'],
+      image: pln,
+      github: 'https://github.com/Jamas108/InventoryPLN_UIDJatim.git',
       demo: '#'
     },
-    {
-      title: 'Mobile Banking App',
-      description: 'Aplikasi mobile banking React Native dengan autentikasi aman, riwayat transaksi, dan fitur transfer uang.',
-      tech: ['React Native', 'Firebase', 'Redux', 'Node.js'],
-      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&h=300&fit=crop',
-      github: '#',
-      demo: '#'
-    }
   ];
 
   const contactInfo = [
@@ -223,6 +247,14 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Dynamic Favicon (Optional) */}
+      {/*
+      <Helmet>
+        <link rel="icon" href={Favicon} />
+        <link rel="apple-touch-icon" href={Favicon} />
+      </Helmet>
+      */}
+      
       <style jsx>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(20px); }
@@ -232,17 +264,21 @@ function App() {
           animation: fadeIn 0.8s ease-out forwards;
         }
       `}</style>
+      
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-md z-50 border-b border-purple-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-              JamsCode
+            <div className="text-2xl font-bold flex items-center">
+              <Code className="w-6 h-6 mr-2 text-purple-400" />
+              <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+                JamsCode
+              </span>
             </div>
 
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Education', 'Experience', 'Skills', 'Portfolio', 'Contact'].map((item) => (
+              {['Beranda', 'Informasi', 'Pendidikan', 'Pengalaman', 'Kemampuan', 'Portfolio', 'Kontak'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -266,7 +302,7 @@ function App() {
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-purple-900/20">
-              {['Home', 'About', 'Education', 'Experience', 'Skills', 'Portfolio', 'Contact'].map((item) => (
+              {['Beranda', 'Informasi', 'Pendidikan', 'Pengalaman', 'Kemampuan', 'Portfolio', 'Kontak'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -281,7 +317,7 @@ function App() {
       </nav>
 
       {/* Hero Banner Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section id="beranda" className={`relative min-h-screen flex items-center justify-center overflow-hidden pt-20 ${isVisible.beranda ? 'animate-fadeIn' : 'opacity-0'}`}>
         {/* Animated Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-blue-900/20">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent"></div>
@@ -301,9 +337,8 @@ function App() {
             {/* Left Side - Text Content */}
             <div className="space-y-8">
               <div className="space-y-2">
-
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                  <span className="text-white">Hello, I'm</span>
+                  <span className="text-white">Halo, Saya</span>
                   <br />
                   <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent">
                     Ansar Nur Jamas
@@ -313,8 +348,8 @@ function App() {
 
               <div className="space-y-4">
                 <h2 className="text-2xl md:text-3xl font-semibold text-gray-300">
-                  <span className="text-purple-400">Fullstack Developer</span> &
-                  <span className="text-blue-400"> Mobile App Creator</span>
+                  <span className="text-purple-400">Fullstack Developer</span>
+                  <span className="text-blue-400"> (Web & Mobile)</span>
                 </h2>
                 <p className="text-lg text-gray-400 leading-relaxed max-w-2xl">
                   Mengembangkan aplikasi web dan mobile yang inovatif dengan teknologi terkini.
@@ -349,7 +384,7 @@ function App() {
                   </span>
                 </button>
                 <button
-                  onClick={() => scrollToSection('contact')}
+                  onClick={() => scrollToSection('kontak')}
                   className="px-8 py-4 border-2 border-purple-500/50 rounded-xl hover:bg-purple-500/10 hover:border-purple-400 transition-all duration-300 backdrop-blur-sm"
                 >
                   <span className="flex items-center gap-2 font-semibold">
@@ -418,7 +453,7 @@ function App() {
       </section>
 
       {/* About Section */}
-      <section id="about" className={`py-20 px-4 ${isVisible.about ? 'animate-fadeIn' : 'opacity-0'}`}>
+      <section id="informasi" className={`py-20 px-4 ${isVisible.informasi ? 'animate-fadeIn' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
@@ -459,7 +494,7 @@ function App() {
                   <div className="flex items-center gap-3">
                     <span className="text-purple-400 font-semibold">Lembaga:</span>
                     <span className="text-gray-300">Telkom University Surabaya</span>
-                  </div> 
+                  </div>
                 </div>
               </div>
             </div>
@@ -468,7 +503,7 @@ function App() {
       </section>
 
       {/* Education Section - REDESIGNED */}
-      <section id="education" className={`py-20 px-4 bg-gray-900/30 ${isVisible.education ? 'animate-fadeIn' : 'opacity-0'}`}>
+      <section id="pendidikan" className={`py-20 px-4 bg-gray-900/30 ${isVisible.pendidikan ? 'animate-fadeIn' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
@@ -478,8 +513,8 @@ function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {education.map((item, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="group bg-gray-900/50 rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/50 transition-all duration-500 hover:shadow-lg hover:shadow-purple-500/10 backdrop-blur-sm transform hover:scale-105"
               >
                 <div className="flex items-start gap-4">
@@ -488,7 +523,7 @@ function App() {
                       {item.icon}
                     </div>
                   </div>
-                  
+
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-300 transition-colors duration-300">
                       {item.degree}
@@ -514,7 +549,7 @@ function App() {
       </section>
 
       {/* Experience Section - REDESIGNED */}
-      <section id="experience" className={`py-20 px-4 ${isVisible.experience ? 'animate-fadeIn' : 'opacity-0'}`}>
+      <section id="pengalaman" className={`py-20 px-4 ${isVisible.pengalaman ? 'animate-fadeIn' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
@@ -524,13 +559,13 @@ function App() {
 
           <div className="space-y-8">
             {experience.map((item, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="group relative overflow-hidden rounded-xl border border-blue-500/20 hover:border-blue-500/50 transition-all duration-500 backdrop-blur-sm"
               >
                 {/* Background gradient effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/95 to-blue-900/20 opacity-90 group-hover:opacity-80 transition-opacity duration-500"></div>
-                
+
                 <div className="relative p-6 md:p-8">
                   <div className="flex flex-col md:flex-row md:items-center gap-6">
                     {/* Icon container */}
@@ -541,7 +576,7 @@ function App() {
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Content */}
                     <div className="flex-1">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
@@ -553,18 +588,18 @@ function App() {
                           <span>{item.period}</span>
                         </div>
                       </div>
-                      
+
                       <p className="text-gray-300 mt-2 group-hover:text-white transition-colors duration-300">
                         {item.company}
                       </p>
-                      
+
                       <p className="text-gray-400 mt-3 group-hover:text-gray-300 transition-colors duration-300">
                         {item.description}
                       </p>
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Animated border effect */}
                 <div className="absolute inset-0 border-2 border-transparent group-hover:border-blue-500/30 rounded-xl transition-all duration-500 pointer-events-none"></div>
               </div>
@@ -580,13 +615,13 @@ function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {organizations.map((item, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="group relative overflow-hidden rounded-xl border border-purple-500/20 hover:border-purple-500/50 transition-all duration-500 backdrop-blur-sm transform hover:scale-105"
               >
                 {/* Background gradient effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900/95 to-purple-900/20 opacity-90 group-hover:opacity-80 transition-opacity duration-500"></div>
-                
+
                 <div className="relative p-6">
                   <div className="flex items-start gap-4">
                     {/* Icon container */}
@@ -595,7 +630,7 @@ function App() {
                         {item.icon}
                       </div>
                     </div>
-                    
+
                     {/* Content */}
                     <div className="flex-1">
                       <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors duration-300">
@@ -621,7 +656,7 @@ function App() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className={`py-20 px-4 bg-gray-900/30 ${isVisible.skills ? 'animate-fadeIn' : 'opacity-0'}`}>
+      <section id="kemampuan" className={`py-20 px-4 bg-gray-900/30 ${isVisible.kemampuan ? 'animate-fadeIn' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
@@ -655,7 +690,7 @@ function App() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-              Featured Projects
+              Portofolio Proyek
             </span>
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -703,24 +738,24 @@ function App() {
       </section>
 
       {/* Contact Section - REDESIGNED */}
-      <section id="contact" className={`py-20 px-4 bg-gray-900/30 ${isVisible.contact ? 'animate-fadeIn' : 'opacity-0'}`}>
+      <section id="kontak" className={`py-20 px-4 bg-gray-900/30 ${isVisible.kontak ? 'animate-fadeIn' : 'opacity-0'}`}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
               Hubungi Saya
             </span>
           </h2>
-          
+
           <div className="text-center mb-12">
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Anda dapat menghubungi saya dari kontak yang tertera di bawah ini
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {contactInfo.map((item, index) => (
-              <a 
-                key={index} 
+              <a
+                key={index}
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -728,7 +763,7 @@ function App() {
               >
                 {/* Background gradient */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}></div>
-                
+
                 <div className="relative p-6 flex items-center gap-4">
                   {/* Icon container */}
                   <div className={`p-4 rounded-lg bg-gradient-to-br ${item.color} bg-opacity-10 group-hover:bg-opacity-20 transition-all duration-500`}>
@@ -736,7 +771,7 @@ function App() {
                       {item.icon}
                     </div>
                   </div>
-                  
+
                   {/* Content */}
                   <div>
                     <h3 className="text-lg font-semibold text-gray-300 group-hover:text-white transition-colors duration-300">
@@ -746,7 +781,7 @@ function App() {
                       {item.value}
                     </p>
                   </div>
-                  
+
                   {/* Hover indicator */}
                   <div className="absolute right-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <ExternalLink className="w-5 h-5 text-gray-400" />
@@ -762,10 +797,21 @@ function App() {
       <footer className="py-8 px-4 border-t border-purple-900/20">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-gray-400">
-            © 2025 Ansar Nur Jamas. All rights reserved. Built with React.js
+            © 2025 Ansar Nur Jamas. Build With Love :)
           </p>
         </div>
       </footer>
+
+      {/* Scroll to top button - Floating in bottom right corner */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed right-6 bottom-6 p-3 rounded-full bg-gradient-to-r from-purple-500 to-purple-700 text-white shadow-lg shadow-purple-500/25 hover:from-purple-600 hover:to-purple-800 transition-all duration-300 transform hover:scale-110 z-50 animate-fadeIn"
+          aria-label="Kembali ke atas"
+        >
+          <ArrowUp className="w-6 h-6" />
+        </button>
+      )}
     </div>
   );
 }

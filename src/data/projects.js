@@ -1,7 +1,7 @@
 export const projects = [
     {
       id: 1,
-      title: 'E-Commerce Platform',
+      title: 'E-Commerce ',
       description: 'Full-stack e-commerce solution dengan React, Node.js, dan MongoDB. Fitur meliputi autentikasi user, integrasi payment, dan admin dashboard.',
       tech: ['React', 'Node.js', 'MongoDB', 'Stripe', 'JWT'],
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop',
@@ -28,5 +28,6 @@ export const projects = [
       github: 'https://github.com/ansarnurjamas/mobile-banking',
       demo: 'https://banking-demo.ansarnurjamas.com',
       featured: true
-    }
+    },
+
   ];
